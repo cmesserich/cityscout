@@ -27,9 +27,9 @@ export default function ContactMailtoForm({ email = CONTACT_EMAIL }: Props) {
     ];
     const subject = encodeURIComponent(subjectRaw);
     const body = encodeURIComponent(bodyLines.join('\r\n'));
-
+    const EMAIL = process.env.NEXT_PUBLIC_CONTACT_EMAIL || 'contactcityscout@gmail.com';
     // Launch the user's default mail client with prefilled content
-    window.location.href = `mailto:${email}?subject=${subject}&body=${body}`;
+    window.location.href = `mailto:${EMAIL}?subject=${subject}&body=${body}`;
   }, [email]);
 
   return (

@@ -1,12 +1,9 @@
-// app/robots.ts
 import type { MetadataRoute } from "next";
 
 export default function robots(): MetadataRoute.Robots {
-  const allowIndex = process.env.NEXT_PUBLIC_ALLOW_INDEXING === "1";
+  const base = process.env.NEXT_PUBLIC_SITE_URL ?? "https://cityscout-three.vercel.app";
   return {
-    rules: allowIndex
-      ? [{ userAgent: "*", allow: "/" }]
-      : [{ userAgent: "*", disallow: "/" }],
-    sitemap: allowIndex ? `${process.env.NEXT_PUBLIC_SITE_URL}/sitemap.xml` : undefined,
+    rules: [{ userAgent: "*", allow: "/" }],
+    sitemap: `${base}/sitemap.xml`,
   };
 }
