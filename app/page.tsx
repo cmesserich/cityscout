@@ -57,9 +57,7 @@ export default function HomePage() {
 
 
 
-
-
-      {/* Popular comparisons */}
+{/* Popular comparisons */}
 <section className="section py-10">
   <h2 className="text-sm font-medium text-slate-700">Try a popular comparison</h2>
 
@@ -69,12 +67,17 @@ export default function HomePage() {
         <Link
           key={p.label}
           href={`/compare?a=${p.a}&b=${p.b}&salary=100000`}
-          className="btn w-full justify-between items-center bg-white hover:bg-[color:var(--surface-2)]"
+          className="
+            btn w-full bg-white hover:bg-[color:var(--surface-2)]
+            flex items-center justify-between gap-2
+            whitespace-normal min-w-0 overflow-hidden
+          "
         >
-          {/* allow text to truncate on narrow screens */}
-          <span className="min-w-0 truncate pr-3">{p.label}</span>
-          {/* keep pill from shrinking/wrapping */}
-          <span className="pill pill-good shrink-0">{p.chip}</span>
+          {/* Text flexes and truncates nicely on narrow screens */}
+          <span className="flex-1 min-w-0 truncate pr-2">{p.label}</span>
+
+          {/* Pill never shrinks or wraps */}
+          <span className="pill pill-good flex-none">{p.chip}</span>
         </Link>
       ))}
     </div>
