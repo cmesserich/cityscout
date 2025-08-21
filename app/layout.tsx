@@ -48,6 +48,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <main className="section py-8 md:py-10">{children}</main>
         <Footer />
         <Analytics/>
+        <SpeedInsights/>
       </body>
     </html>
   );
