@@ -11,12 +11,6 @@ import { getCity, spendingPower, percentDelta, fmtMoney } from "@/lib/compare";
 
 type SP = { a?: string; b?: string; salary?: string };
 
-function resolveSearchParams(sp: SP | Promise<SP>): Promise<SP> {
-  return (typeof (sp as any)?.then === "function")
-    ? (sp as Promise<SP>)
-    : Promise.resolve(sp as SP);
-}
-
 const clampSalary = (n: number) =>
   Number.isFinite(n) ? Math.max(0, Math.min(5_000_000, n)) : 100_000;
 
@@ -25,11 +19,12 @@ export const dynamic = "force-dynamic";
 export default async function ComparePage({
   searchParams,
 }: {
-  searchParams: SP | Promise<SP>;
+  // NOTE: Next 15 requires searchParams to be a Promise
+  searchParams: Promise<SP>;
 }) {
-  const sp = await resolveSearchParams(searchParams);
+  const sp = await searchParams;
 
- // --- NEW: derive defaults from query (works when coming from Snapshot or chips)
+  // --- derive defaults from query (works when coming from Snapshot or chips)
   const defaultA = typeof sp.a === "string" && sp.a.trim() ? sp.a : undefined;
   const defaultB = typeof sp.b === "string" && sp.b.trim() ? sp.b : undefined;
   const defaultSalary =
