@@ -160,13 +160,18 @@ export default async function ComparePage({
             ).
           </p>
         </div>
-        <div className="flex gap-2">
-          <Link href={{ pathname: "/compare", query: { a: b.slug, b: a.slug, salary: String(salary) } }} className="btn btn-outline">
-            Swap cities
-          </Link>
-          <CopyLinkButton className="btn btn-outline" />
-          <PrintButton className="btn btn-outline" label="Export report" />
-        </div>
+        <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-end">
+  <Link
+    href={{ pathname: "/compare", query: { a: b.slug, b: a.slug, salary: String(salary) } }}
+    className="btn btn-outline w-full sm:w-auto"
+  >
+    Swap cities
+  </Link>
+
+  <CopyLinkButton className="btn btn-outline w-full sm:w-auto" />
+
+  <PrintButton className="btn btn-outline w-full sm:w-auto" label="Export report" />
+</div>
       </div>
 
       <div className="card">
