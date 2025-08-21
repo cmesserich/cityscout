@@ -59,25 +59,27 @@ export default function HomePage() {
 
 
 
-      {/* LIVE EXAMPLES */}
-      <section className="section py-10">
-        <h2 className="text-sm font-medium text-slate-700">Try a popular comparison</h2>
+      {/* Popular comparisons */}
+<section className="section py-10">
+  <h2 className="text-sm font-medium text-slate-700">Try a popular comparison</h2>
 
-        <div className="card mt-3 p-4">
-          <div className="grid gap-3 sm:grid-cols-2">
-            {PRESETS.map((p) => (
-              <Link
-                key={p.label}
-                href={`/compare?a=${p.a}&b=${p.b}&salary=100000`}
-                className="btn w-full justify-between bg-white hover:bg-[color:var(--surface-2)]"
-              >
-                <span>{p.label}</span>
-                <span className="pill pill-good">{p.chip}</span>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
+  <div className="card mt-3 p-4">
+    <div className="grid gap-3 sm:grid-cols-2">
+      {PRESETS.map((p) => (
+        <Link
+          key={p.label}
+          href={`/compare?a=${p.a}&b=${p.b}&salary=100000`}
+          className="btn w-full justify-between items-center bg-white hover:bg-[color:var(--surface-2)]"
+        >
+          {/* allow text to truncate on narrow screens */}
+          <span className="min-w-0 truncate pr-3">{p.label}</span>
+          {/* keep pill from shrinking/wrapping */}
+          <span className="pill pill-good shrink-0">{p.chip}</span>
+        </Link>
+      ))}
+    </div>
+  </div>
+</section>
 
       {/* HOW IT WORKS */}
       <section className="section pb-4">

@@ -1,20 +1,19 @@
-// components/Footer.tsx
 import Link from "next/link";
-import { SITE } from "@/lib/site";
+import { NAV_ITEMS } from "./navItems";
 
 export default function Footer() {
-  const year = new Date().getFullYear();
   return (
-    <footer className="mt-16 border-t border-slate-200">
-      <div className="mx-auto max-w-5xl px-6 py-6 flex items-center justify-between text-sm text-slate-600">
-        <span>© {year} {SITE.name}</span>
-        <nav className="flex items-center gap-4">
-          <Link href="/" className="hover:text-slate-900">Home</Link>
-          <Link href="/snapshot"className="hover:text-slate-900">City Scouting Report</Link>
-          <Link href="/compare"className="hover:text-slate-900">Compare Cities</Link>
-          <Link href="/wizard"className="hover:text-slate-900">Find Your City</Link>
-          <Link href="/about" className="hover:text-slate-900">About</Link>
-          <Link href="/contact"className="hover:text-slate-900">Contact</Link>
+    <footer className="section py-10">
+      <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
+        <div className="text-sm text-slate-500">
+          © {new Date().getFullYear()} CityScout
+        </div>
+        <nav className="flex flex-wrap gap-x-6 gap-y-2 text-sm">
+          {NAV_ITEMS.map((n) => (
+            <Link key={n.href} href={n.href} className="hover:underline">
+              {n.label}
+            </Link>
+          ))}
         </nav>
       </div>
     </footer>
